@@ -62,11 +62,17 @@ public class PCB {
         this.TAT = this.CT - this.AT ;
     }  
     
-    // Method that Calculates the Completion time
+    // Method that Calculates the Waiting time
     void calculateWT()
     {
         this.WT = this.TAT - this.BT ;
     }  
      
+    void FinishProcess(double finishTime)
+    {
+        this.calculateCT(finishTime);
+        this.calculateTAT();
+        this.calculateWT();
+    }
     
 }
