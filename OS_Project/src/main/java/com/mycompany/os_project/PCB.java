@@ -74,5 +74,10 @@ public class PCB {
         this.calculateTAT();
         this.calculateWT();
     }
+
+    @Override
+    public String toString() {
+        return "PCB{" + "PID=" + PID + ", AT=" + AT + ", BT=" + BT + ", RTM=" + RTM + ", CT=" + CT + ", TAT=" + TAT + ", WT=" + WT + ", RT=" + RT + '}';
+    }
     
 }

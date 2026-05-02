@@ -12,20 +12,35 @@ import java.util.*;
 public class RoundRobinScheduler {
     double quantum;
     int clock;
-    public List<PCB> execute(Queue<PCB> processes){
+    Queue<PCB> excuted = new LinkedList<>() ;
+    public Queue<PCB>execute(Queue<PCB> processes){
          
   // enqueue = add , serve = remove
-    for (PCB p : processes) {
+   System.out.println("Process Queue:\n"+processes.toString());
+  while(!processes.isEmpty()) 
+  {
+      PCB p = processes.poll();
     if(p.RTM <= quantum)
     {
         clock += p.RTM;
         p.RTM = 0;
-        processes.remove(p);
+        p.FinishProcess(clock);
+         System.out.println("\n"+p.toString()+"\n");
+         excuted.add(p);
+         
         
+        
+       
     }else
     {
+        clock += quantum;
         p.updateRTM(quantum);
+        System.out.println("\n"+p.toString()+"\n");
+        processes.add(p);
+        
+         
     }
+     System.out.println("Process Queue:\n"+processes.toString());
     
 }
     
@@ -46,7 +61,11 @@ public class RoundRobinScheduler {
     
     
     
-    return processList;
+    return excuted;
+    }
+
+    public RoundRobinScheduler(double quantum) {
+        this.quantum = quantum;
     }
     
 }
