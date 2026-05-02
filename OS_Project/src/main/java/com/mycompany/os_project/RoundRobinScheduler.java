@@ -25,8 +25,8 @@ public class RoundRobinScheduler {
         clock += p.RTM;
         p.RTM = 0;
         p.FinishProcess(clock);
-         System.out.println("\n"+p.toString()+"\n");
-         excuted.add(p);
+        System.out.println("\n"+p.toString()+"\n");
+        excuted.add(p);
          
         
         
@@ -43,24 +43,6 @@ public class RoundRobinScheduler {
      System.out.println("Process Queue:\n"+processes.toString());
     
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     return excuted;
     }
 
