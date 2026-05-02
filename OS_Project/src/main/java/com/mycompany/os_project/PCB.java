@@ -7,10 +7,10 @@ public class PCB {
     double AT;
     double BT;
     double RTM;
-    double CT;  // abdelrahman
+    double CT;  // Abdelrahman
     double TAT; // Abdelghani
     double WT;  // Abdelghani
-    double RT;  // abdelrahman
+    double RT;  // Abdelrahman
 
     public PCB(int PID, double AT, double BT, double RTM, double CT, double TAT, double WT, double RT) {
         this.PID = PID;
@@ -22,7 +22,9 @@ public class PCB {
         this.WT = WT;
         this.RT = RT;
     }
-
+    /**/
+    
+    /**/
    
     
 }
