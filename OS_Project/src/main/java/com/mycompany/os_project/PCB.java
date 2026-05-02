@@ -7,10 +7,10 @@ public class PCB {
     double AT;
     double BT;
     double RTM;
-    double CT;  // Abdelrahman
-    double TAT; // Abdelghani
+    double CT;  // Abdelrahman (the cpu clock value when the proccess hhave completed)
+    double TAT; // Abdelghani (total time the process spent in the system, from arrival to completion.)
     double WT;  // Abdelghani
-    double RT;  // Abdelrahman
+    double RT;  // Abdelrahman (Time from the arrival till the proccess is first excuted by the CPU)
 
     public PCB(int PID, double AT, double BT, double RTM, double CT, double TAT, double WT, double RT) {
         this.PID = PID;
@@ -22,15 +22,25 @@ public class PCB {
         this.WT = WT;
         this.RT = RT;
     }
-    /*ay kalam
-    brdo ay kalam
-    ay kalam tany
-    ay kalam pro max*/
+
+    public PCB(int PID, double AT, double BT) {
+        this.PID = PID;
+        this.AT = AT;
+        this.BT = BT;
+        RTM = BT;
+    }
     
-    /**/
-   /*
-    ana 3mk
-    ya abdelrahman
-    */
+    // Method that Calculates the Completion time
+    void calculateCT(double finishTime)
+    {
+        this.CT = finishTime;
+    }  
+
+    // Method that Calculates the Response time
+    void calculateRT(double firstStartTime)
+    {
+        this.RT = firstStartTime - this.AT;
+    }
+    
     
 }
