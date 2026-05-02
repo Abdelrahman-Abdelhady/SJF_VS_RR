@@ -7,10 +7,10 @@ public class PCB {
     double AT;
     double BT;
     double RTM;
-    double CT;
-    double TAT;
-    double WT;
-    double RT;
+    double CT;  // abdelrahman
+    double TAT; // Abdelghani
+    double WT;  // Abdelghani
+    double RT;  // abdelrahman
 
     public PCB(int PID, double AT, double BT, double RTM, double CT, double TAT, double WT, double RT) {
         this.PID = PID;
