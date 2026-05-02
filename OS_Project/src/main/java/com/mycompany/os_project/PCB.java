@@ -22,7 +22,10 @@ public class PCB {
         this.WT = WT;
         this.RT = RT;
     }
-    /**/
+    /*ay kalam
+    brdo ay kalam
+    ay kalam tany
+    ay kalam pro max*/
     
     /**/
    /*
