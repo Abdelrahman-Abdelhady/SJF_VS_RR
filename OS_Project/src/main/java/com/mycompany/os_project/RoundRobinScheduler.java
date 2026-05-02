@@ -10,9 +10,11 @@ import java.util.*;
  * @author ASUS
  */
 public class RoundRobinScheduler {
-    public List<PCB> execute(List<PCB> processes, int quantum){
-    Queue<PCB> readyQueue = new LinkedList<>();
-    List<PCB> processList = new ArrayList<>();
+    double quantum;
+    int clock;
+    public List<PCB> execute(Queue<PCB> processes){
+         
+  
     for (PCB p : processes) {
     processList.add(new PCB(
             p.PID,
