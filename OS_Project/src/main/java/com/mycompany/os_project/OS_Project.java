@@ -6,7 +6,7 @@ package com.mycompany.os_project;
 
 /**
  *
- * @author Abdelrahman
+ * @author kolenaaa
  */
 public class OS_Project {
 
