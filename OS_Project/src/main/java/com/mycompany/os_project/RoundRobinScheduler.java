@@ -14,18 +14,19 @@ public class RoundRobinScheduler {
     int clock;
     public List<PCB> execute(Queue<PCB> processes){
          
-  
+  // enqueue = add , serve = remove
     for (PCB p : processes) {
-    processList.add(new PCB(
-            p.PID,
-            p.AT,
-            p.BT,
-            p.BT,   
-            0,     
-            0,      
-            0,      
-            -1      
-    ));
+    if(p.RTM <= quantum)
+    {
+        clock += p.RTM;
+        p.RTM = 0;
+        processes.remove(p);
+        
+    }else
+    {
+        p.updateRTM(quantum);
+    }
+    
 }
     
     
