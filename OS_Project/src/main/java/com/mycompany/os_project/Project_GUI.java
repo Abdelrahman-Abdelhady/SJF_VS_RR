@@ -57,7 +57,7 @@ public class Project_GUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -204,7 +204,7 @@ public class Project_GUI extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
         int selectedRow = jTableProcess.getSelectedRow();
 
-        if(selectedRow != -1) { // -1 means no row is selected
+        if(selectedRow != -1) { 
             model.removeRow(selectedRow);
         } else {
             if(model.getRowCount() == 0) {
