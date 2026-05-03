@@ -14,12 +14,14 @@ import javax.swing.table.DefaultTableModel;
 public class Project_GUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Project_GUI.class.getName());
-
+    
     /**
      * Creates new form Project_GUI
      */
     public Project_GUI() {
         initComponents();
+        jTextArea1.setEditable(false); 
+    jTextArea1.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 12));
     }
 
     /**
@@ -45,6 +47,8 @@ public class Project_GUI extends javax.swing.JFrame {
         ButtonAddProcess = new javax.swing.JButton();
         ButtonDelete = new javax.swing.JButton();
         ButtonReset = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,24 +120,38 @@ public class Project_GUI extends javax.swing.JFrame {
         });
 
         ButtonReset.setText("Reset");
+        ButtonReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonResetActionPerformed(evt);
+            }
+        });
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Excute Output :");
+        jScrollPane2.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
+                        .addGap(72, 72, 72)
                         .addComponent(ButtonAddProcess)
                         .addGap(43, 43, 43)
                         .addComponent(ButtonDelete)
                         .addGap(43, 43, 43)
-                        .addComponent(ButtonReset)
-                        .addContainerGap())
+                        .addComponent(ButtonReset))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(226, 226, 226)
+                        .addComponent(jButtonAddProcess)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LablePID)
                             .addComponent(TextFieldPID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,17 +167,13 @@ public class Project_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TextFieldRR, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(LableRR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LableRR, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                                 .addGap(15, 15, 15))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButtonAddProcess)
-                                .addGap(196, 196, 196))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,22 +195,37 @@ public class Project_GUI extends javax.swing.JFrame {
                     .addComponent(ButtonAddProcess)
                     .addComponent(ButtonDelete)
                     .addComponent(ButtonReset))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAddProcess)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddProcessActionPerformed
-        // TODO add your handling code here:
+//String testOutput = "Round Robin Output\n";
+//    testOutput += "Gantt Chart: [P1, P2, P3]\n";
+//    testOutput += "---------------------------------\n";
+//    testOutput += "PID | AT | BT | CT | TAT | WT\n";
+//    testOutput += "P1  | 0  | 3  | 3  | 3   | 0\n";
+//    testOutput += "P2  | 2  | 5  | 8  | 6   | 1\n";
+//    testOutput += "---------------------------------\n";
+//    testOutput += "Average Waiting Time: 0.5";
+//
+//    
+//    jTextArea1.setText(testOutput);
+//    
+//    
+//    System.out.println("Execute button clicked and output displayed!");      
     }//GEN-LAST:event_jButtonAddProcessActionPerformed
 
     private void TextFieldPIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldPIDActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_TextFieldPIDActionPerformed
 
     private void TextFieldATActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldATActionPerformed
@@ -241,6 +270,20 @@ public class Project_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableProcessInputMethodTextChanged
 
+    private void ButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonResetActionPerformed
+TextFieldPID.setText("");
+    TextFieldAT.setText("");
+    TextFieldBT.setText("");
+    TextFieldRR.setText("");
+    
+    
+    jTextArea1.setText("Excute Output :");
+    
+   
+    DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
+    model.setRowCount(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonResetActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,6 +323,8 @@ public class Project_GUI extends javax.swing.JFrame {
     private javax.swing.JTextField TextFieldRR;
     private javax.swing.JButton jButtonAddProcess;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableProcess;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
