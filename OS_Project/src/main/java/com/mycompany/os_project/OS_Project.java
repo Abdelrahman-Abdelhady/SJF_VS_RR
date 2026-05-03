@@ -33,7 +33,7 @@ public class OS_Project {
      
      System.out.println("\n--- SJF ---");
      SjfScheduler sjf = new SjfScheduler();
-     sjf.execute(processes2);
+     sjf.execute(processes);
      
     }
 }
