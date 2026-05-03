@@ -3,14 +3,26 @@
  */
 
 package com.mycompany.os_project;
-
+import java.util.*;
 /**
  *
- * @author Abdelrahman
+ * @author kolenaaa
  */
 public class OS_Project {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Yala nebd2 el projectttt!!!");
+        
+        Queue<PCB> processes = new LinkedList<>();
+
+        processes.add(new PCB(1, 0, 5));
+        processes.add(new PCB(2, 1, 3));
+        processes.add(new PCB(3, 2, 8));
+        processes.add(new PCB(4, 3, 6));
+    
+     RoundRobinScheduler  S = new RoundRobinScheduler(2);
+     S.execute(processes);
+    
+
     }
 }
