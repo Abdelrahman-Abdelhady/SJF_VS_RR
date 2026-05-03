@@ -142,7 +142,7 @@ public class Project_GUI extends javax.swing.JFrame {
                         .addComponent(ButtonAddProcess)
                         .addGap(43, 43, 43)
                         .addComponent(ButtonDelete)
-                        .addGap(43, 43, 43)
+                        .addGap(55, 55, 55)
                         .addComponent(ButtonReset))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(226, 226, 226)
