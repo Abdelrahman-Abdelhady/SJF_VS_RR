@@ -15,11 +15,18 @@ public class RoundRobinScheduler {
     Queue<PCB> Ready = new LinkedList<>() ;
     ganttchart.add(String.valueOf(clock));
   // enqueue = add , serve = remove
-   System.out.println("Process Queue:\n"+processes.toString());
+   System.out.println("Ready Queue:\n"+Ready.toString());
    addToReadyQueue(processes,Ready);
-  while(!processes.isEmpty()) 
+  while (!Ready.isEmpty() || !processes.isEmpty())
   {
-      PCB p = processes.poll();
+    //To account for idel state
+    if (Ready.isEmpty() && !processes.isEmpty()) {
+        clock++;
+        addToReadyQueue(processes, Ready);
+        continue;
+    }
+
+      PCB p = Ready.poll();
     if(p.RTM <= quantum)
     {
         clock += p.RTM;
@@ -36,9 +43,9 @@ public class RoundRobinScheduler {
         p.updateRTM(quantum);
         System.out.println("\n"+p.toString()+"\n");
         ganttchart.add("-P"+String.valueOf(p.PID)+"-"+clock);
-        processes.add(p);       
+        Ready.add(p);       
     }
-     System.out.println("Process Queue:\n"+processes.toString());
+     System.out.println("Ready Queue:\n"+Ready.toString());
     
     }
     System.out.println("\nGantChatt: "+String.join("", ganttchart));
@@ -48,11 +55,14 @@ public class RoundRobinScheduler {
 
     private void addToReadyQueue(Queue<PCB> processes,Queue<PCB> Ready)
     {
-    for (PCB process:processes)
-        {
-            if(process.AT <= clock)
-                Ready.add(process);
-        }   
+    Iterator<PCB> p = processes.iterator();
+    while (p.hasNext()) {
+        PCB process = p.next();
+        if (process.AT <= clock) {
+            Ready.add(process);
+            p.remove(); 
+        }
+    }
     }
     public RoundRobinScheduler(double quantum) {
         this.quantum = quantum;
