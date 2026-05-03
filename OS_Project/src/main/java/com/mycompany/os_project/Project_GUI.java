@@ -4,6 +4,9 @@
  */
 package com.mycompany.os_project;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author melha
@@ -28,21 +31,212 @@ public class Project_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableProcess = new javax.swing.JTable();
+        jButtonAddProcess = new javax.swing.JButton();
+        LablePID = new javax.swing.JLabel();
+        LableAT = new javax.swing.JLabel();
+        LableBT = new javax.swing.JLabel();
+        LableRR = new javax.swing.JLabel();
+        TextFieldPID = new javax.swing.JTextField();
+        TextFieldAT = new javax.swing.JTextField();
+        TextFieldBT = new javax.swing.JTextField();
+        TextFieldRR = new javax.swing.JTextField();
+        ButtonAddProcess = new javax.swing.JButton();
+        ButtonDelete = new javax.swing.JButton();
+        ButtonReset = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTableProcess.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "PID", "Arrival", "Burst"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTableProcess.getTableHeader().setReorderingAllowed(false);
+        jTableProcess.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTableProcessInputMethodTextChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableProcess);
+
+        jButtonAddProcess.setText("Excute");
+        jButtonAddProcess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddProcessActionPerformed(evt);
+            }
+        });
+
+        LablePID.setText("PID");
+
+        LableAT.setText("Arrival Time");
+
+        LableBT.setText("Burst Time");
+
+        LableRR.setText("Quantum(RR)");
+
+        TextFieldPID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldPIDActionPerformed(evt);
+            }
+        });
+
+        TextFieldAT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldATActionPerformed(evt);
+            }
+        });
+
+        ButtonAddProcess.setText("Add Process");
+        ButtonAddProcess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAddProcessActionPerformed(evt);
+            }
+        });
+
+        ButtonDelete.setText("Delete");
+        ButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeleteActionPerformed(evt);
+            }
+        });
+
+        ButtonReset.setText("Reset");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LablePID)
+                            .addComponent(TextFieldPID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LableAT)
+                            .addComponent(TextFieldAT, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LableBT, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextFieldBT, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextFieldRR, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LableRR, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(ButtonAddProcess)
+                        .addGap(43, 43, 43)
+                        .addComponent(ButtonDelete)
+                        .addGap(43, 43, 43)
+                        .addComponent(ButtonReset)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonAddProcess)
+                        .addGap(196, 196, 196))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LablePID)
+                    .addComponent(LableAT)
+                    .addComponent(LableBT)
+                    .addComponent(LableRR))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextFieldPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextFieldAT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextFieldBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextFieldRR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonAddProcess)
+                    .addComponent(ButtonDelete)
+                    .addComponent(ButtonReset))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonAddProcess)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonAddProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddProcessActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAddProcessActionPerformed
+
+    private void TextFieldPIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldPIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldPIDActionPerformed
+
+    private void TextFieldATActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldATActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldATActionPerformed
+
+    private void ButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeleteActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
+        int selectedRow = jTableProcess.getSelectedRow();
+
+        if(selectedRow != -1) { // -1 means no row is selected
+            model.removeRow(selectedRow);
+        } else {
+            if(model.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Table is already empty.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+        }
+    }
+    }//GEN-LAST:event_ButtonDeleteActionPerformed
+
+    private void ButtonAddProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddProcessActionPerformed
+        String pid = TextFieldPID.getText().trim();
+        String at = TextFieldAT.getText().trim();
+        String bt = TextFieldBT.getText().trim();
+
+        if(pid.isEmpty() || at.isEmpty() || bt.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Enter All Data!");
+            return; 
+        }
+
+        DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
+        model.addRow(new Object[]{pid, at, bt});
+        
+        TextFieldPID.setText("");
+        TextFieldAT.setText("");
+        TextFieldBT.setText("");
+        TextFieldRR.setText("");
+    }//GEN-LAST:event_ButtonAddProcessActionPerformed
+
+    private void jTableProcessInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTableProcessInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableProcessInputMethodTextChanged
 
     /**
      * @param args the command line arguments
@@ -70,5 +264,19 @@ public class Project_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonAddProcess;
+    public javax.swing.JButton ButtonDelete;
+    private javax.swing.JButton ButtonReset;
+    private javax.swing.JLabel LableAT;
+    private javax.swing.JLabel LableBT;
+    private javax.swing.JLabel LablePID;
+    private javax.swing.JLabel LableRR;
+    private javax.swing.JTextField TextFieldAT;
+    private javax.swing.JTextField TextFieldBT;
+    private javax.swing.JTextField TextFieldPID;
+    private javax.swing.JTextField TextFieldRR;
+    private javax.swing.JButton jButtonAddProcess;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableProcess;
     // End of variables declaration//GEN-END:variables
 }
