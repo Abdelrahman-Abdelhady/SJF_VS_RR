@@ -9,7 +9,9 @@ public class SjfScheduler {
     Queue<PCB> executed = new LinkedList<>();
 
     public Queue<PCB> execute(Queue<PCB> processesQueue) {
+        Queue<PCB> Copy_processes = new LinkedList<>(SchedulerUtils.deepCopyQueue(processesQueue));
         List<PCB> allProcesses = new ArrayList<>(processesQueue);
+        
         int n = allProcesses.size();
         int completed = 0;
         PCB currentProcess = null;
@@ -21,7 +23,6 @@ public class SjfScheduler {
                     readyQueue.add(p);
                 }
             }
-
             System.out.println("\nProcess Queue:");
             System.out.println(readyQueue.toString());
 
@@ -36,32 +37,25 @@ public class SjfScheduler {
                     }
                 }
             }
-
             if (shortest == null) {
                 clock++;
                 continue;
             }
-
             System.out.println("\nExecuting: " + shortest.toString());
-
             if (currentProcess == null || currentProcess.PID != shortest.PID) {
                 ganttChart.add(clock + "-P" + shortest.PID);
                 currentProcess = shortest;
             }
-
             shortest.RTM--;
             clock++;
-
             if (shortest.RTM == 0) {
                 completed++;
                 shortest.FinishProcess(clock);
                 executed.add(shortest);
                 currentProcess = null;
-
                 System.out.println(">>> Process P" + shortest.PID + " finished at Time " + clock);
             }
         }
-
         String finalGantt = String.join("-", ganttChart) + "-" + clock;
         System.out.println("\nFinal Gantt Chart: [" + finalGantt + "]");
 

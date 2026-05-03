@@ -24,12 +24,7 @@ public class OS_Project {
      RoundRobinScheduler  S = new RoundRobinScheduler(2);
      S.execute(processes);
      
-        Queue<PCB> processes2 = new LinkedList<>();
 
-        processes2.add(new PCB(1, 0, 5));
-        processes2.add(new PCB(2, 1, 3));
-        processes2.add(new PCB(3, 2, 8));
-        processes2.add(new PCB(4, 3, 6));
      
      System.out.println("\n--- SJF ---");
      SjfScheduler sjf = new SjfScheduler();
