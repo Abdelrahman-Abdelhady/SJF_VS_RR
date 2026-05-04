@@ -67,9 +67,16 @@ public class Project_GUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jTableProcess.getTableHeader().setReorderingAllowed(false);
@@ -262,22 +269,46 @@ public class Project_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonDeleteActionPerformed
 
     private void ButtonAddProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddProcessActionPerformed
-        String pid = TextFieldPID.getText().trim();
-        String at = TextFieldAT.getText().trim();
-        String bt = TextFieldBT.getText().trim();
+        String pidStr = TextFieldPID.getText().trim();
+        String atStr = TextFieldAT.getText().trim();
+        String btStr = TextFieldBT.getText().trim();
 
-        if(pid.isEmpty() || at.isEmpty() || bt.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please Enter All Data!");
+        if(pidStr.isEmpty() || atStr.isEmpty() || btStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Error: Missing required fields!");
             return; 
         }
 
-        DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
-        model.addRow(new Object[]{pid, at, bt});
+        try {
+            int at = Integer.parseInt(atStr);
+            int bt = Integer.parseInt(btStr);
         
-        TextFieldPID.setText("");
-        TextFieldAT.setText("");
-        TextFieldBT.setText("");
-        TextFieldRR.setText("");
+            if (at < 0) {
+                JOptionPane.showMessageDialog(this, "Arrival Time cannot be negative!");
+                return;
+            }
+            if (bt <= 0) {
+                JOptionPane.showMessageDialog(this, "Burst Time must be greater than 0!");
+                return;
+            }
+
+        
+            DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
+            for (int i = 0; i < model.getRowCount(); i++) {
+                if (model.getValueAt(i, 0).toString().equals(pidStr)) {
+                    JOptionPane.showMessageDialog(this, "Duplicate Process ID detected!");
+                    return;
+                }
+            }
+            
+            model.addRow(new Object[]{pidStr, at, bt});
+
+            TextFieldPID.setText("");
+            TextFieldAT.setText("");
+            TextFieldBT.setText("");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid input: Please enter numeric values for Time fields.");
+        }
     }//GEN-LAST:event_ButtonAddProcessActionPerformed
 
     private void jTableProcessInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTableProcessInputMethodTextChanged
@@ -285,7 +316,7 @@ public class Project_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableProcessInputMethodTextChanged
 
     private void ButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonResetActionPerformed
-TextFieldPID.setText("");
+    TextFieldPID.setText("");
     TextFieldAT.setText("");
     TextFieldBT.setText("");
     TextFieldRR.setText("");
