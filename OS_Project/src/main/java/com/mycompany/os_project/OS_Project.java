@@ -29,8 +29,6 @@ public class OS_Project {
      System.out.println("\n--- SJF ---");
      SjfScheduler sjf = new SjfScheduler();
      sjf.execute(processes);
-     
-
-     
+         
     }
 }
