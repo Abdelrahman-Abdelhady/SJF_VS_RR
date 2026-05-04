@@ -35,7 +35,12 @@ public class PCB {
         this.BT = BT;
         RTM = BT;
     }
-    
+        // copy constructor
+    public PCB(PCB other) {
+        this.PID = other.PID;
+        this.AT = other.AT;
+        this.RTM = other.RTM;
+    }
     // Method that Calculates the Completion time
     void calculateCT(double finishTime)
     {
