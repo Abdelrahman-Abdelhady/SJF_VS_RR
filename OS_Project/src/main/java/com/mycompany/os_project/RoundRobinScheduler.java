@@ -49,9 +49,13 @@ public class RoundRobinScheduler {
             System.out.println("Ready Queue:\n" + Ready.toString());
 
         }
-        System.out.println("\nGantChatt: " + String.join("", ganttchart));
+        System.out.println("\nGantChart: " + String.join("", ganttchart));
         System.out.println(excuted);
         //return excuted;
+        
+     AverageWaitingTime(excuted);
+     AverageTAT(excuted);
+     AverageRT(excuted);
     }
 
     private void addToReadyQueue(Queue<PCB> Copy_processes, Queue<PCB> Ready) {
@@ -68,5 +72,31 @@ public class RoundRobinScheduler {
     public RoundRobinScheduler(double quantum) {
         this.quantum = quantum;
     }
+    
+public void AverageWaitingTime(Queue<PCB> finishedProcesses) {
+    double totalWaitingTime = 0;
+    
+    for (PCB p : finishedProcesses) { 
+        totalWaitingTime += p.WT;
+    }
+    System.out.println("Average Waiting Time -Round Robin- = " + totalWaitingTime / finishedProcesses.size()); 
+    }
+public void AverageTAT(Queue<PCB> finishedProcesses) {
+    double totalTAT = 0;
+    
+    for (PCB p : finishedProcesses) { 
+        totalTAT += p.TAT;
+    }
+    System.out.println("Average TAT -Round Robin- = " + totalTAT / finishedProcesses.size()); 
+}
+public void AverageRT(Queue<PCB> finishedProcesses) {
+    double totalRT = 0;
+    
+    for (PCB p : finishedProcesses) { 
+        totalRT += p.RT;
+    }
+    System.out.println("Average RT -Round Robin- = " + totalRT / finishedProcesses.size()); 
+}
+
 
 }

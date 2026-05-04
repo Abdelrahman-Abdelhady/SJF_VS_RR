@@ -8,7 +8,7 @@ public class SjfScheduler {
     List<String> ganttChart = new LinkedList<>();
     Queue<PCB> executed = new LinkedList<>();
 
-    public Queue<PCB> execute(Queue<PCB> processesQueue) {
+    public void execute(Queue<PCB> processesQueue) {
         Queue<PCB> Copy_processes = new LinkedList<>(SchedulerUtils.deepCopyQueue(processesQueue));
         List<PCB> allProcesses = new ArrayList<>(processesQueue);
         
@@ -58,7 +58,36 @@ public class SjfScheduler {
         }
         String finalGantt = String.join("-", ganttChart) + "-" + clock;
         System.out.println("\nFinal Gantt Chart: [" + finalGantt + "]");
+        
+        AverageWaitingTime(executed);
+        AverageTAT(executed);
+        AverageRT(executed);
 
-        return executed;
+        //return executed; 
     }
+public void AverageWaitingTime(Queue<PCB> finishedProcesses) {
+    double totalWaitingTime = 0;
+    
+    for (PCB p : finishedProcesses) { 
+        totalWaitingTime += p.WT;
+    }
+    System.out.println("Average Waiting Time -SJF- = " + totalWaitingTime / finishedProcesses.size()); 
 }
+public void AverageTAT(Queue<PCB> finishedProcesses) {
+    double totalTAT = 0;
+    
+    for (PCB p : finishedProcesses) { 
+        totalTAT += p.TAT;
+    }
+    System.out.println("Average TAT -SJF- = " + totalTAT / finishedProcesses.size()); 
+}
+public void AverageRT(Queue<PCB> finishedProcesses) {
+    double totalRT = 0;
+    
+    for (PCB p : finishedProcesses) { 
+        totalRT += p.RT;
+    }
+    System.out.println("Average RT -SJF- = " + totalRT / finishedProcesses.size()); 
+}
+}
+

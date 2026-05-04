@@ -30,5 +30,7 @@ public class OS_Project {
      SjfScheduler sjf = new SjfScheduler();
      sjf.execute(processes);
      
+
+     
     }
 }
