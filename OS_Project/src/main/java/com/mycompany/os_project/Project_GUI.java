@@ -151,7 +151,7 @@ public class Project_GUI extends javax.swing.JFrame {
                         .addComponent(ButtonAddProcess)
                         .addGap(43, 43, 43)
                         .addComponent(ButtonDelete)
-                        .addGap(43, 43, 43)
+                        .addGap(55, 55, 55)
                         .addComponent(ButtonReset))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(226, 226, 226)
@@ -232,10 +232,10 @@ public class Project_GUI extends javax.swing.JFrame {
 //    
 //    jTextArea1.setText(testOutput);
 //    jTextArea2.setText(testOutput);
-    
-    
-    
-//    System.out.println("Execute button clicked and output displayed!");      
+//    
+//    
+//    
+//  System.out.println("Execute button clicked and output displayed!");      
     }//GEN-LAST:event_jButtonAddProcessActionPerformed
 
     private void TextFieldPIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldPIDActionPerformed
