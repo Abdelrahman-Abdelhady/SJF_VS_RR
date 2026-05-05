@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.os_project;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,7 +10,8 @@ import javax.swing.table.DefaultTableModel;
  * @author melha
  */
 public class Project_GUI extends javax.swing.JFrame {
-    
+     Queue<PCB> Processes = new LinkedList<>();
+     RoundRobinScheduler Sch1 = new RoundRobinScheduler();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Project_GUI.class.getName());
     
     /**
@@ -45,7 +44,7 @@ public class Project_GUI extends javax.swing.JFrame {
         TextFieldPID = new javax.swing.JTextField();
         TextFieldAT = new javax.swing.JTextField();
         TextFieldBT = new javax.swing.JTextField();
-        TextFieldRR = new javax.swing.JTextField();
+        TextFieldQuantum = new javax.swing.JTextField();
         ButtonAddProcess = new javax.swing.JButton();
         ButtonDelete = new javax.swing.JButton();
         ButtonReset = new javax.swing.JButton();
@@ -116,6 +115,12 @@ public class Project_GUI extends javax.swing.JFrame {
             }
         });
 
+        TextFieldQuantum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldQuantumActionPerformed(evt);
+            }
+        });
+
         ButtonAddProcess.setText("Add Process");
         ButtonAddProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +186,7 @@ public class Project_GUI extends javax.swing.JFrame {
                             .addComponent(TextFieldBT, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextFieldRR, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextFieldQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LableRR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(15, 15, 15))))
@@ -206,7 +211,7 @@ public class Project_GUI extends javax.swing.JFrame {
                     .addComponent(TextFieldPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextFieldAT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextFieldBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextFieldRR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextFieldQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonAddProcess)
@@ -227,8 +232,32 @@ public class Project_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddProcessActionPerformed
-//String testOutput = "Round Robin Output\n";
-//    testOutput += "Gantt Chart: [P1, P2, P3]\n";
+     
+        
+        String quantumStr = TextFieldQuantum.getText().trim();
+
+        if (quantumStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a quantum value!");
+            return;
+        }
+
+        try {
+            int quantum = Integer.parseInt(quantumStr);
+
+            if (quantum <= 0) {
+                JOptionPane.showMessageDialog(this, "Quantum must be a positive integer greater than 0!");
+                return;
+            }
+
+            Sch1.setQuantum(quantum);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Invalid input: Quantum must be a number.");
+            return;
+        }
+        
+    String RR_Output = "Round Robin Output\n";
+    RR_Output +=  Sch1.execute(Processes)+"\n";
 //    testOutput += "---------------------------------\n";
 //    testOutput += "PID | AT | BT | CT | TAT | WT\n";
 //    testOutput += "P1  | 0  | 3  | 3  | 3   | 0\n";
@@ -237,7 +266,7 @@ public class Project_GUI extends javax.swing.JFrame {
 //    testOutput += "Average Waiting Time: 0.5";
 //
 //    
-//    jTextArea1.setText(testOutput);
+    jTextArea1.setText(RR_Output);
 //    jTextArea2.setText(testOutput);
 //    
 //    
@@ -272,7 +301,7 @@ public class Project_GUI extends javax.swing.JFrame {
         String pidStr = TextFieldPID.getText().trim();
         String atStr = TextFieldAT.getText().trim();
         String btStr = TextFieldBT.getText().trim();
-
+       
         if(pidStr.isEmpty() || atStr.isEmpty() || btStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Error: Missing required fields!");
             return; 
@@ -302,6 +331,15 @@ public class Project_GUI extends javax.swing.JFrame {
             
             model.addRow(new Object[]{pidStr, at, bt});
 
+            Processes.clear();
+            for (int i = 0; i < model.getRowCount(); i++) {
+                Processes.add(new PCB(
+                    Integer.parseInt(model.getValueAt(i, 0).toString()),
+                    Double.parseDouble(model.getValueAt(i, 1).toString()),
+                    Double.parseDouble(model.getValueAt(i, 2).toString())
+                ));
+            }
+            
             TextFieldPID.setText("");
             TextFieldAT.setText("");
             TextFieldBT.setText("");
@@ -312,14 +350,14 @@ public class Project_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonAddProcessActionPerformed
 
     private void jTableProcessInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTableProcessInputMethodTextChanged
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jTableProcessInputMethodTextChanged
 
     private void ButtonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonResetActionPerformed
     TextFieldPID.setText("");
     TextFieldAT.setText("");
     TextFieldBT.setText("");
-    TextFieldRR.setText("");
+    TextFieldQuantum.setText("");
     
     
     jTextArea1.setText("SJF Output :");
@@ -329,6 +367,10 @@ public class Project_GUI extends javax.swing.JFrame {
     DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
     model.setRowCount(0);        // TODO add your handling code here:
     }//GEN-LAST:event_ButtonResetActionPerformed
+
+    private void TextFieldQuantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldQuantumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldQuantumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -366,7 +408,7 @@ public class Project_GUI extends javax.swing.JFrame {
     private javax.swing.JTextField TextFieldAT;
     private javax.swing.JTextField TextFieldBT;
     private javax.swing.JTextField TextFieldPID;
-    private javax.swing.JTextField TextFieldRR;
+    private javax.swing.JTextField TextFieldQuantum;
     private javax.swing.JButton jButtonAddProcess;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

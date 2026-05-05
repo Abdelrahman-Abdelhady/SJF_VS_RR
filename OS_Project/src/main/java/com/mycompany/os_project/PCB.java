@@ -6,7 +6,7 @@ public class PCB {
     int PID;
     double AT;
     double BT;
-    
+    boolean started = false;
     //should be calculated whenevever the Proccess enters Excution
     double RTM; //Remaining excution time for round robin
     
@@ -39,6 +39,7 @@ public class PCB {
     public PCB(PCB other) {
         this.PID = other.PID;
         this.AT = other.AT;
+        this.BT = other.BT;
         this.RTM = other.RTM;
     }
     // Method that Calculates the Completion time
@@ -50,6 +51,7 @@ public class PCB {
     // Method that Calculates the Response time
     void calculateRT(double firstStartTime)
     {
+         if (!this.started) 
         this.RT = firstStartTime - this.AT;
     }
     

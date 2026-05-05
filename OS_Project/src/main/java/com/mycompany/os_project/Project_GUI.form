@@ -60,7 +60,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="TextFieldRR" min="-2" pref="71" max="-2" attributes="0"/>
+                          <Component id="TextFieldQuantum" min="-2" pref="71" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="LableRR" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -94,7 +94,7 @@
                   <Component id="TextFieldPID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TextFieldAT" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TextFieldBT" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TextFieldRR" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TextFieldQuantum" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -204,7 +204,10 @@
     </Component>
     <Component class="javax.swing.JTextField" name="TextFieldBT">
     </Component>
-    <Component class="javax.swing.JTextField" name="TextFieldRR">
+    <Component class="javax.swing.JTextField" name="TextFieldQuantum">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldQuantumActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ButtonAddProcess">
       <Properties>
