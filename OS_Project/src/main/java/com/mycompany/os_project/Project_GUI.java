@@ -158,21 +158,8 @@ public class Project_GUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(ButtonAddProcess)
-                        .addGap(43, 43, 43)
-                        .addComponent(ButtonDelete)
-                        .addGap(55, 55, 55)
-                        .addComponent(ButtonReset))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(jButtonAddProcess)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(72, 72, 72)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LablePID)
@@ -185,23 +172,37 @@ public class Project_GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LableBT, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextFieldBT, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextFieldQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LableRR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(15, 15, 15))))
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(ButtonAddProcess)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ButtonDelete)
+                        .addGap(76, 76, 76)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LableRR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane3))
-                        .addGap(0, 31, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ButtonReset)
+                            .addComponent(TextFieldQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 133, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(264, 264, 264)
+                .addComponent(jButtonAddProcess)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LablePID)
                     .addComponent(LableAT)
@@ -213,7 +214,7 @@ public class Project_GUI extends javax.swing.JFrame {
                     .addComponent(TextFieldAT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextFieldBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextFieldQuantum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonAddProcess)
                     .addComponent(ButtonDelete)
@@ -224,16 +225,32 @@ public class Project_GUI extends javax.swing.JFrame {
                 .addComponent(jButtonAddProcess)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddProcessActionPerformed
-     
+         DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
+
+      
+        if (model.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Error: No processes in the table!");
+            return;
+        }
+        
+        Processes.clear();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            Processes.add(new PCB(
+                Integer.parseInt(model.getValueAt(i, 0).toString()),
+                Double.parseDouble(model.getValueAt(i, 1).toString()),
+                Double.parseDouble(model.getValueAt(i, 2).toString())
+            ));
+        }
+
         
         String quantumStr = TextFieldQuantum.getText().trim();
 
@@ -241,6 +258,7 @@ public class Project_GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter a quantum value!");
             return;
         }
+        
 
         try {
             int quantum = Integer.parseInt(quantumStr);
@@ -323,14 +341,7 @@ public class Project_GUI extends javax.swing.JFrame {
             
             model.addRow(new Object[]{pidStr, at, bt});
 
-            Processes.clear();
-            for (int i = 0; i < model.getRowCount(); i++) {
-                Processes.add(new PCB(
-                    Integer.parseInt(model.getValueAt(i, 0).toString()),
-                    Double.parseDouble(model.getValueAt(i, 1).toString()),
-                    Double.parseDouble(model.getValueAt(i, 2).toString())
-                ));
-            }
+           
             
             TextFieldPID.setText("");
             TextFieldAT.setText("");
