@@ -64,11 +64,11 @@ public class RoundRobinScheduler {
                 ganttchart.add("-P" + String.valueOf(p.PID) + "-" + clock);
                 excuted.add(p);
             } else {
-                
-                clock += quantum;
-                addToReadyQueue(Copy_processes, Ready);
-                p.updateRTM(quantum);
-                System.out.println("\n" + p.toString() + "\n");
+               for (int i = 0; i < quantum && p.RTM > 0; i++) {
+                    clock++;        
+                    p.updateRTM(1);
+                    addToReadyQueue(Copy_processes, Ready);
+                }
                 ganttchart.add("-P" + String.valueOf(p.PID) + "-" + clock);
                 Ready.add(p);
             }

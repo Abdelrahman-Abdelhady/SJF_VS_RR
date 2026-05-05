@@ -11,9 +11,12 @@ public class SjfScheduler {
     List<String> ganttChart = new LinkedList<>();
     Queue<PCB> executed = new LinkedList<>();
 
-    public void execute(Queue<PCB> processesQueue) {
+    public String execute(Queue<PCB> processesQueue) {
+        clock = 0;                  
+        ganttChart.clear();         
+        executed.clear();            
         Queue<PCB> Copy_processes = new LinkedList<>(SchedulerUtils.deepCopyQueue(processesQueue));
-        List<PCB> allProcesses = new ArrayList<>(processesQueue);
+        List<PCB> allProcesses = new ArrayList<>(Copy_processes);
 
         int n = allProcesses.size();
         int completed = 0;
@@ -49,6 +52,10 @@ public class SjfScheduler {
                 ganttChart.add(clock + "-P" + shortest.PID);
                 currentProcess = shortest;
             }
+            if (!shortest.started) {
+                shortest.calculateRT(clock);
+                shortest.started = true;
+            }
             shortest.RTM--;
             clock++;
             if (shortest.RTM == 0) {
@@ -66,34 +73,36 @@ public class SjfScheduler {
         AverageTAT(executed);
         AverageRT(executed);
 
-        //return executed; 
+         return "\nGantChart: " + String.join("", finalGantt)+
+             "\n"+AverageWaitingTime(executed)+
+             "\n"+AverageTAT(executed)+
+             "\n"+AverageRT(executed);
     }
 
-    public void AverageWaitingTime(Queue<PCB> finishedProcesses) {
-        double totalWaitingTime = 0;
-
-        for (PCB p : finishedProcesses) {
-            totalWaitingTime += p.WT;
-        }
-        System.out.println("Average Waiting Time -SJF- = " + totalWaitingTime / finishedProcesses.size());
+   public String AverageWaitingTime(Queue<PCB> finishedProcesses) {
+    double totalWaitingTime = 0;
+    
+    for (PCB p : finishedProcesses) { 
+        totalWaitingTime += p.WT;
     }
-
-    public void AverageTAT(Queue<PCB> finishedProcesses) {
-        double totalTAT = 0;
-
-        for (PCB p : finishedProcesses) {
-            totalTAT += p.TAT;
-        }
-        System.out.println("Average TAT -SJF- = " + totalTAT / finishedProcesses.size());
+    return "Average Waiting Time = " + String.format("%.2f", totalWaitingTime / finishedProcesses.size()); 
     }
-
-    public void AverageRT(Queue<PCB> finishedProcesses) {
-        double totalRT = 0;
-
-        for (PCB p : finishedProcesses) {
-            totalRT += p.RT;
-        }
-        System.out.println("Average RT -SJF- = " + totalRT / finishedProcesses.size());
+public String AverageTAT(Queue<PCB> finishedProcesses) {
+    double totalTAT = 0;
+    
+    for (PCB p : finishedProcesses) { 
+        totalTAT += p.TAT;
     }
+    return "Average TAT = " + String.format("%.2f", totalTAT / finishedProcesses.size()); 
+}
+public String AverageRT(Queue<PCB> finishedProcesses) {
+    double totalRT = 0;
+    
+    for (PCB p : finishedProcesses) { 
+        totalRT += p.RT;
+    }
+    return "Average RT = " + String.format("%.2f", totalRT / finishedProcesses.size()); 
+}
+
 }
 

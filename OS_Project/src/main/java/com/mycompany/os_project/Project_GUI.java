@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 public class Project_GUI extends javax.swing.JFrame {
      Queue<PCB> Processes = new LinkedList<>();
      RoundRobinScheduler Sch1 = new RoundRobinScheduler();
+     SjfScheduler Sch2 = new SjfScheduler();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Project_GUI.class.getName());
     
     /**
@@ -258,20 +259,11 @@ public class Project_GUI extends javax.swing.JFrame {
         
     String RR_Output = "Round Robin Output\n";
     RR_Output +=  Sch1.execute(Processes)+"\n";
-//    testOutput += "---------------------------------\n";
-//    testOutput += "PID | AT | BT | CT | TAT | WT\n";
-//    testOutput += "P1  | 0  | 3  | 3  | 3   | 0\n";
-//    testOutput += "P2  | 2  | 5  | 8  | 6   | 1\n";
-//    testOutput += "---------------------------------\n";
-//    testOutput += "Average Waiting Time: 0.5";
-//
-//    
+    String SJF_Output = "SJF Output\n";
+    SJF_Output +=  Sch2.execute(Processes)+"\n";
     jTextArea1.setText(RR_Output);
-//    jTextArea2.setText(testOutput);
-//    
-//    
-//    
-//  System.out.println("Execute button clicked and output displayed!");      
+    jTextArea2.setText(RR_Output);
+
     }//GEN-LAST:event_jButtonAddProcessActionPerformed
 
     private void TextFieldPIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldPIDActionPerformed
