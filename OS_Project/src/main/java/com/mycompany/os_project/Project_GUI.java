@@ -262,7 +262,7 @@ public class Project_GUI extends javax.swing.JFrame {
     String SJF_Output = "SJF Output\n";
     SJF_Output +=  Sch2.execute(Processes)+"\n";
     jTextArea1.setText(RR_Output);
-    jTextArea2.setText(RR_Output);
+    jTextArea2.setText(SJF_Output);
 
     }//GEN-LAST:event_jButtonAddProcessActionPerformed
 
