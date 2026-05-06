@@ -3,7 +3,7 @@
  */
 
 package com.mycompany.os_project;
-import java.util.*;
+import javax.swing.SwingUtilities;
 /**
  *
  * @author kolenaaa
@@ -11,16 +11,13 @@ import java.util.*;
 public class OS_Project {
 
     public static void main(String[] args) {
-        System.out.println("Yala nebd2 el projectttt!!!");
-        
-        Queue<PCB> processes = new LinkedList<>();
-
-        processes.add(new PCB(1, 0, 5));
-        processes.add(new PCB(2, 1, 3));
-        processes.add(new PCB(3, 2, 8));
-        processes.add(new PCB(4, 3, 6));
-    
-     RoundRobinScheduler  S = new RoundRobinScheduler(2);
+      // Use invokeLater to ensure the GUI is created on the Event Dispatch Thread
+        SwingUtilities.invokeLater(() -> {
+            Project_GUI gui = new Project_GUI();
+            gui.setTitle("OS Scheduler Simulation");
+            gui.setLocationRelativeTo(null); // Center the window on screen
+            gui.setVisible(true);
+        });
     
 
     }
