@@ -13,7 +13,6 @@ public class RoundRobinScheduler {
     int clock;
     
     List<String> ganttchart = new LinkedList<>();
-    Queue<PCB> excuted = new LinkedList<>();
 
     
     
@@ -28,7 +27,7 @@ public class RoundRobinScheduler {
         }
     }
     
-    public String execute(Queue<PCB> processes) {
+    public String execute(Queue<PCB> processes,Queue<PCB> excuted) {
         clock = 0; // reset clock
         ganttchart.clear(); 
         excuted.clear(); 

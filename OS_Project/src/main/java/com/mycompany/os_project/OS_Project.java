@@ -21,7 +21,6 @@ public class OS_Project {
         processes.add(new PCB(4, 3, 6));
     
      RoundRobinScheduler  S = new RoundRobinScheduler(2);
-     S.execute(processes);
     
 
     }

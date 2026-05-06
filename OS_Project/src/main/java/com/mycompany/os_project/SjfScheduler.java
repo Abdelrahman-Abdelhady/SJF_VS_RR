@@ -9,9 +9,8 @@ public class SjfScheduler {
 
     int clock = 0;
     List<String> ganttChart = new LinkedList<>();
-    Queue<PCB> executed = new LinkedList<>();
 
-    public String execute(Queue<PCB> processesQueue) {
+    public String execute(Queue<PCB> processesQueue, Queue<PCB> executed ) {
         clock = 0;                  
         ganttChart.clear();         
         executed.clear();            

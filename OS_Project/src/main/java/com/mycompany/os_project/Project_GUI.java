@@ -11,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Project_GUI extends javax.swing.JFrame {
      Queue<PCB> Processes = new LinkedList<>();
+     Queue<PCB> RRProcesses = new LinkedList<>();
+     Queue<PCB> SJFProcesses = new LinkedList<>();
      RoundRobinScheduler Sch1 = new RoundRobinScheduler();
      SjfScheduler Sch2 = new SjfScheduler();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Project_GUI.class.getName());
@@ -24,6 +26,11 @@ public class Project_GUI extends javax.swing.JFrame {
     jTextArea1.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 12));
     jTextArea2.setEditable(false); 
     jTextArea2.setFont(new java.awt.Font("Monospaced", java.awt.Font.PLAIN, 12));
+    
+    DefaultTableModel model2 = (DefaultTableModel) RRTable.getModel();
+    model2.setRowCount(0); 
+    DefaultTableModel model3 = (DefaultTableModel) SJFTable.getModel();
+    model3.setRowCount(0); 
     }
 
     /**
@@ -55,6 +62,12 @@ public class Project_GUI extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        RRTable = new javax.swing.JTable();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        SJFTable = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,7 +168,37 @@ public class Project_GUI extends javax.swing.JFrame {
 
         jLabel1.setText("SJF Output");
 
-        jLabel2.setText("Round Robin Output");
+        jLabel2.setText("Round Robin Excuted Proceses");
+
+        RRTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "PID", "AT", "BT", "CT", "TAT", "RT"
+            }
+        ));
+        jScrollPane4.setViewportView(RRTable);
+
+        SJFTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "PID", "AT", "BT", "CT", "TAT", "RT"
+            }
+        ));
+        jScrollPane5.setViewportView(SJFTable);
+
+        jLabel3.setText("SJF Excuted Proceses");
+
+        jLabel4.setText("Round Robin Output");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,6 +229,8 @@ public class Project_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ButtonReset)
+                        .addGap(113, 113, 113)
+                        .addComponent(jButtonAddProcess)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
@@ -198,18 +243,23 @@ public class Project_GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(188, 188, 188)
-                        .addComponent(jButtonAddProcess)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
                             .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane3)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE))
-                        .addGap(0, 31, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(693, 693, 693))
+                            .addComponent(jScrollPane3))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))))
+                .addGap(0, 31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,23 +280,27 @@ public class Project_GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonAddProcess)
                     .addComponent(ButtonDelete)
-                    .addComponent(ButtonReset))
+                    .addComponent(ButtonReset)
+                    .addComponent(jButtonAddProcess))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonAddProcess)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(3, 3, 3)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(jLabel1)
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(2, 2, 2)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -294,10 +348,35 @@ public class Project_GUI extends javax.swing.JFrame {
             return;
         }
         
-    String RR_Output =  Sch1.execute(Processes)+"\n";
-    String SJF_Output =  Sch2.execute(Processes)+"\n";
+    String RR_Output =  Sch1.execute(Processes,RRProcesses)+"\n";
+    String SJF_Output =  Sch2.execute(Processes,SJFProcesses)+"\n";
     jTextArea2.setText(RR_Output);
     jTextArea1.setText(SJF_Output);
+    
+      DefaultTableModel model2 = (DefaultTableModel) RRTable.getModel();
+           
+           for (PCB p: RRProcesses){
+                model2.addRow(new Object[]{
+                p.PID, 
+                p.AT,  
+                p.BT, 
+                p.CT,       
+                p.TAT,       
+                p.RT         
+            });
+           } 
+           DefaultTableModel model3 = (DefaultTableModel) SJFTable.getModel();
+           
+           for (PCB p: SJFProcesses){
+                model3.addRow(new Object[]{
+                p.PID, 
+                p.AT,  
+                p.BT, 
+                p.CT,       
+                p.TAT,       
+                p.RT         
+            });
+           } 
 
     }//GEN-LAST:event_jButtonAddProcessActionPerformed
 
@@ -383,6 +462,10 @@ public class Project_GUI extends javax.swing.JFrame {
    
     DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
     model.setRowCount(0);        // TODO add your handling code here:
+    DefaultTableModel model2 = (DefaultTableModel) RRTable.getModel();
+    model2.setRowCount(0); 
+    DefaultTableModel model3 = (DefaultTableModel) SJFTable.getModel();
+    model3.setRowCount(0); 
     }//GEN-LAST:event_ButtonResetActionPerformed
 
     private void TextFieldQuantumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldQuantumActionPerformed
@@ -422,6 +505,8 @@ public class Project_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel LableBT;
     private javax.swing.JLabel LablePID;
     private javax.swing.JLabel LableRR;
+    private javax.swing.JTable RRTable;
+    private javax.swing.JTable SJFTable;
     private javax.swing.JTextField TextFieldAT;
     private javax.swing.JTextField TextFieldBT;
     private javax.swing.JTextField TextFieldPID;
@@ -429,9 +514,13 @@ public class Project_GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAddProcess;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTableProcess;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
