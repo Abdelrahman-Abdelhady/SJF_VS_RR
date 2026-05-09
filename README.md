@@ -57,7 +57,10 @@ Open Project: * If you have NetBeans, go to File > Open Project and select the f
 
 • Validation: Error messages for invalid inputs (empty fields or negative numbers).
 
-6.Team members
+6.Project documentation and test cases:
+	https://docs.google.com/document/d/1k0f-d7qFAyRh38KEnxRR4DIL4kSYk_LB5R4bClXH0L0/edit?tab=t.0#heading=h.qs8j5i9twam0
+
+7.Team members
 
 
 عبدالرحمن ايهاب حسان عبدالهادي     20240511
