@@ -10,7 +10,7 @@ This application is a Windows-based simulator written in Java. It allows users t
 3. How to Run
 
     
-4.	Download & Extract:
+	Download & Extract:
 
  Unzip the project folder to your Desktop or C:\ drive.
    
@@ -34,7 +34,7 @@ Open Project: * If you have NetBeans, go to File > Open Project and select the f
 
 • Press Execute to see the results in the output areas.
 
-6. Project Folder Structure
+4. Project Folder Structure
    
 • Project_GUI.java: The main Windows form and user interface.
 
@@ -46,7 +46,7 @@ Open Project: * If you have NetBeans, go to File > Open Project and select the f
 
 • SchedulerUtils.java: Contains the "Deep Copy" tool to ensure fair comparison on Windows.
 
-7. Features Tested
+5. Features Tested
    
 • Gantt Chart Generation: Visual timeline of process execution.
 
@@ -54,7 +54,7 @@ Open Project: * If you have NetBeans, go to File > Open Project and select the f
 
 • Validation: Error messages for invalid inputs (empty fields or negative numbers).
 
-8.Team members
+6.Team members
 عبدالرحمن ايهاب حسان عبدالهادي     20240511
 
 
