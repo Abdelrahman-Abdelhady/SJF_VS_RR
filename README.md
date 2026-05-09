@@ -3,8 +3,11 @@
 This application is a Windows-based simulator written in Java. It allows users to compare Round Robin and Shortest Job First (Preemptive) algorithms side-by-side. The tool calculates all necessary OS metrics (Waiting Time, Turnaround Time, and Response Time) and visualizes the process execution using Gantt Chart
 
 2. Prerequisites
+   
 • Operating System: Windows 10/11.
+
 • IDE: NetBeans IDE (Version 8.2 or higher, including Apache NetBeans).
+
 • Java: JDK 8, 11, or 17.
 
 3. How to Run
