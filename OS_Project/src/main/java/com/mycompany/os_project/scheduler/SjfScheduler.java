@@ -29,8 +29,6 @@ public class SjfScheduler {
                     readyQueue.add(p);
                 }
             }
-            System.out.println("\nProcess Queue:");
-            System.out.println(readyQueue.toString());
 
             PCB shortest = null;
             double minRemainingTime = Double.MAX_VALUE;
@@ -47,7 +45,7 @@ public class SjfScheduler {
                 clock++;
                 continue;
             }
-            System.out.println("\nExecuting: " + shortest.toString());
+            // بتشتغل لما يكون لسه بادئ او لما بتيجي بروسيس اقصر من ال شغاله
             if (currentProcess == null || currentProcess.PID != shortest.PID) {
                 ganttChart.add(clock + "-P" + shortest.PID);
                 currentProcess = shortest;
@@ -67,11 +65,6 @@ public class SjfScheduler {
             }
         }
         String finalGantt = String.join("-", ganttChart) + "-" + clock;
-        System.out.println("\nFinal Gantt Chart: [" + finalGantt + "]");
-
-        AverageWaitingTime(executed);
-        AverageTAT(executed);
-        AverageRT(executed);
 
          return "\nGantChart: " + String.join("", finalGantt)+
              "\n"+AverageWaitingTime(executed)+
