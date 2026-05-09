@@ -35,7 +35,6 @@ public class RoundRobinScheduler {
         Queue<PCB> Ready = new LinkedList<>();
         ganttchart.add(String.valueOf(clock));
         // enqueue = add , serve = remove
-        System.out.println("Ready Queue:\n" + Ready.toString());
         addToReadyQueue(Copy_processes, Ready);
         while (!Ready.isEmpty() || !Copy_processes.isEmpty()) {
             //To account for idel state
@@ -59,7 +58,6 @@ public class RoundRobinScheduler {
                 addToReadyQueue(Copy_processes, Ready);
                 p.RTM = 0;
                 p.FinishProcess(clock);
-                System.out.println("\n" + p.toString() + "\n");
                 ganttchart.add("-P" + String.valueOf(p.PID) + "-" + clock);
                 excuted.add(p);
             } else {
@@ -71,13 +69,11 @@ public class RoundRobinScheduler {
                 ganttchart.add("-P" + String.valueOf(p.PID) + "-" + clock);
                 Ready.add(p);
             }
-            System.out.println("Ready Queue:\n" + Ready.toString());
+            
 
         }
-        System.out.println("\nGantChatt: " + String.join("", ganttchart));
-        System.out.println("\nGantChart: " + String.join("", ganttchart));
-        System.out.println(excuted);
-        //return excuted;
+        
+        
         
      
      

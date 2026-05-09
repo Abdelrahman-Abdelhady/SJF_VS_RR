@@ -218,8 +218,8 @@ public class Project_GUI extends javax.swing.JFrame {
                         .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TextFieldBT, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LableBT, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2))
+                            .addComponent(LableBT, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(ButtonAddProcess)
@@ -307,7 +307,12 @@ public class Project_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddProcessActionPerformed
-         DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
+         
+            DefaultTableModel model5 = (DefaultTableModel) RRTable.getModel();
+        model5.setRowCount(0); 
+        DefaultTableModel model6 = (DefaultTableModel) SJFTable.getModel();
+        model6.setRowCount(0); 
+        DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
 
       
         if (model.getRowCount() == 0) {
@@ -416,7 +421,7 @@ public class Project_GUI extends javax.swing.JFrame {
         try {
             int at = Integer.parseInt(atStr);
             int bt = Integer.parseInt(btStr);
-        
+            int pid = Integer.parseInt(pidStr);
             if (at < 0) {
                 JOptionPane.showMessageDialog(this, "Arrival Time cannot be negative!");
                 return;
@@ -425,8 +430,9 @@ public class Project_GUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Burst Time must be greater than 0!");
                 return;
             }
-
-        
+             
+            
+            
             DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
             for (int i = 0; i < model.getRowCount(); i++) {
                 if (model.getValueAt(i, 0).toString().equals(pidStr)) {
