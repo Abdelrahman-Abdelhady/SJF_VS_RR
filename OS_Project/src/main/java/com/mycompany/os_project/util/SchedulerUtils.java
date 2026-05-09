@@ -1,5 +1,6 @@
 package com.mycompany.os_project;
 
+import com.mycompany.os_project.PCB;
 import java.util.LinkedList;
 import java.util.Queue;
 
