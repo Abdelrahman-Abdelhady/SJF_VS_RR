@@ -64,7 +64,11 @@ private String getFinalConclusion(Queue<PCB> sjfRes, Queue<PCB> rrRes) {
         conclusion.append(" SJF provides better Response Time.\n");}
      else {
         conclusion.append(" Round Robin provides better Response Time.\n");}
-          
+    conclusion.append("Conclusion:\n");
+    if (sjfWT <= rrWT){ conclusion.append(" SJF is the better algorithm here if we value effeciency more\n");
+            }else{conclusion.append(" RR is the better algorithm here if we value effeciency more\n");}
+    if (sjfRT <= rrRT){ conclusion.append(" SJF is the better algorithm here if we value Respose more\n");
+            }else{conclusion.append(" RR is the better algorithm here if we value Fairness more\n");}
     return conclusion.toString();
 }
 /**
@@ -103,9 +107,13 @@ private String getFinalConclusion(Queue<PCB> sjfRes, Queue<PCB> rrRes) {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        comparisonTextFeild = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 204, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
 
         jTableProcess.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -236,11 +244,13 @@ private String getFinalConclusion(Queue<PCB> sjfRes, Queue<PCB> rrRes) {
 
         jLabel4.setText("Round Robin Output");
 
-        jTextArea3.setEditable(false);
-        jTextArea3.setColumns(20);
-        jTextArea3.setLineWrap(true);
-        jTextArea3.setRows(5);
-        jScrollPane6.setViewportView(jTextArea3);
+        comparisonTextFeild.setEditable(false);
+        comparisonTextFeild.setColumns(20);
+        comparisonTextFeild.setLineWrap(true);
+        comparisonTextFeild.setRows(5);
+        jScrollPane6.setViewportView(comparisonTextFeild);
+
+        jLabel5.setText("Comparison Summary");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -295,15 +305,23 @@ private String getFinalConclusion(Queue<PCB> sjfRes, Queue<PCB> rrRes) {
                             .addComponent(jScrollPane3))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 6, Short.MAX_VALUE))
+                            .addComponent(jLabel5)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 16, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(214, 214, 214))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,17 +354,19 @@ private String getFinalConclusion(Queue<PCB> sjfRes, Queue<PCB> rrRes) {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(4, 4, 4)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -405,7 +425,7 @@ private String getFinalConclusion(Queue<PCB> sjfRes, Queue<PCB> rrRes) {
     jTextArea1.setText(SJF_Output);
     
     String finalResult = getFinalConclusion(SJFProcesses, RRProcesses);
-    jTextArea3.setText(finalResult);
+    comparisonTextFeild.setText(finalResult);
     
       DefaultTableModel model2 = (DefaultTableModel) RRTable.getModel();
            
@@ -514,6 +534,7 @@ private String getFinalConclusion(Queue<PCB> sjfRes, Queue<PCB> rrRes) {
     TextFieldQuantum.setText("");
     jTextArea1.setText("");
     jTextArea2.setText("");
+    comparisonTextFeild.setText("");
    
     DefaultTableModel model = (DefaultTableModel) jTableProcess.getModel();
     model.setRowCount(0);        // TODO add your handling code here:
@@ -566,11 +587,13 @@ private String getFinalConclusion(Queue<PCB> sjfRes, Queue<PCB> rrRes) {
     private javax.swing.JTextField TextFieldBT;
     private javax.swing.JTextField TextFieldPID;
     private javax.swing.JTextField TextFieldQuantum;
+    private javax.swing.JTextArea comparisonTextFeild;
     private javax.swing.JButton jButtonAddProcess;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -580,6 +603,5 @@ private String getFinalConclusion(Queue<PCB> sjfRes, Queue<PCB> rrRes) {
     private javax.swing.JTable jTableProcess;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     // End of variables declaration//GEN-END:variables
 }

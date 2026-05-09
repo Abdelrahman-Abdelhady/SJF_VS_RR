@@ -84,7 +84,7 @@ public class PCB {
 
     @Override
     public String toString() {
-        return "PCB{" + "PID=" + PID + ", AT=" + AT + ", BT=" + BT + ", RTM=" + RTM + ", CT=" + CT + ", TAT=" + TAT + ", WT=" + WT + ", RT=" + RT + '}';
+        return "P"+ this.PID;
     }
     
     

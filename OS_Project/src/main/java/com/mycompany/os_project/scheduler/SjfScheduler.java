@@ -61,12 +61,12 @@ public class SjfScheduler {
                 shortest.FinishProcess(clock);
                 executed.add(shortest);
                 currentProcess = null;
-                System.out.println(">>> Process P" + shortest.PID + " finished at Time " + clock);
+              
             }
         }
         String finalGantt = String.join("-", ganttChart) + "-" + clock;
 
-         return "\nGantChart: " + String.join("", finalGantt)+
+         return "GantChart: " + String.join("", finalGantt)+
              "\n Average Waiting Time = "+String.format("%.2f",AverageWaitingTime(executed))+
              "\n Average TAT = "+String.format("%.2f",AverageTAT(executed))+
              "\n Average RT ="+String.format("%.2f",AverageRT(executed));

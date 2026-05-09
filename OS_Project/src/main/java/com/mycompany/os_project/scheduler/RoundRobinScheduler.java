@@ -16,7 +16,7 @@ public class RoundRobinScheduler {
 
     
     
-      private void addToReadyQueue(Queue<PCB> Copy_processes, Queue<PCB> Ready) {
+      private String addToReadyQueue(Queue<PCB> Copy_processes, Queue<PCB> Ready) {
         Iterator<PCB> p = Copy_processes.iterator();
         while (p.hasNext()) {
             PCB process = p.next();
@@ -25,6 +25,7 @@ public class RoundRobinScheduler {
                 p.remove();
             }
         }
+        return "Ready Queue at clock = "+this.clock+" "+Ready.toString()+"\n";
     }
     
     public String execute(Queue<PCB> processes,Queue<PCB> excuted) {
@@ -33,9 +34,10 @@ public class RoundRobinScheduler {
         excuted.clear(); 
         Queue<PCB> Copy_processes = new LinkedList<>(SchedulerUtils.deepCopyQueue(processes));
         Queue<PCB> Ready = new LinkedList<>();
+        String ReadyQueue = new String();
         ganttchart.add(String.valueOf(clock));
         // enqueue = add , serve = remove
-        addToReadyQueue(Copy_processes, Ready);
+        ReadyQueue+= addToReadyQueue(Copy_processes, Ready);
         while (!Ready.isEmpty() || !Copy_processes.isEmpty()) {
             //To account for idel state
             if (Ready.isEmpty() && !Copy_processes.isEmpty()) {
@@ -55,7 +57,8 @@ public class RoundRobinScheduler {
                 
                 
                 clock += p.RTM;
-                addToReadyQueue(Copy_processes, Ready);
+                ReadyQueue+= addToReadyQueue(Copy_processes, Ready);
+
                 p.RTM = 0;
                 p.FinishProcess(clock);
                 ganttchart.add("-P" + String.valueOf(p.PID) + "-" + clock);
@@ -64,7 +67,7 @@ public class RoundRobinScheduler {
                for (int i = 0; i < quantum && p.RTM > 0; i++) {
                     clock++;        
                     p.updateRTM(1);
-                    addToReadyQueue(Copy_processes, Ready);
+                    ReadyQueue+= addToReadyQueue(Copy_processes, Ready);
                 }
                 ganttchart.add("-P" + String.valueOf(p.PID) + "-" + clock);
                 Ready.add(p);
@@ -79,10 +82,11 @@ public class RoundRobinScheduler {
      
      
      
-     return "\nGantChart: " + String.join("", ganttchart)+
+     return "GantChart: " + String.join("", ganttchart)+
              "\n Average Waiting Time = "+String.format("%.2f",AverageWaitingTime(excuted))+
              "\n Average TAT = "+String.format("%.2f",AverageTAT(excuted))+
-             "\n Average RT ="+String.format("%.2f",AverageRT(excuted));
+             "\n Average RT ="+String.format("%.2f",AverageRT(excuted))+
+             "\n\n"+ReadyQueue;
     }
 
     
