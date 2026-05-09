@@ -25,7 +25,7 @@ Open Project: * If you have NetBeans, go to File > Open Project and select the f
 
 • Compile: javac com/mycompany/os_project/*.java
 
-• Run: java com.mycompany.os_project.Project_GUI
+• Run: java com.mycompany.os_project.java
 
 	App Usage:
    
